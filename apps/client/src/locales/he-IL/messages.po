@@ -38,11 +38,11 @@ msgstr ""
 msgid "<0>I'm sure the app is not perfect, but I'd like for it to be.</0><1>If you faced any issues while creating your resume, or have an idea that would help you and other users in creating your resume more easily, drop an issue on the repository or send me an email about it.</1>"
 msgstr "<0>אין לי ספק שהיישום רחוק מלהיות מושלם אבל אני חותר לכך שיהיה כזה.</0><1>אם נתקלת בבעיות במהלך יצירת קורות החיים שלך או שיש לך רעיון שיכול לסייע לך ולמשתמשים אחרים ביצירת קורות חיים יותר בקלות, אפשר לדוח על הצעה/תקלה במאגר הקוד או לשלוח לי הודעה על כך בדוא״ל.</1>"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:435
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:536
 msgid "<0>Note: </0>By utilizing the OpenAI API, you acknowledge and accept the <1>terms of use</1> and <2>privacy policy</2> outlined by OpenAI. Please note that Reactive Resume bears no responsibility for any improper or unauthorized utilization of the service, and any resulting repercussions or liabilities solely rest on the user."
 msgstr "<0>לתשומת ליבך: </0>עצם השימוש ב־API של OpenAI מהווה הכרה והסכמה ל<1>תנאי השימוש</1> ול<2>מדיניות הפרטיות</2> שנקבעו על ידי OpenAI. נא לשים לב ש־Reactive Resume אינו אחראי במקרים של שימוש לא הולם או לא מורשה בשירות, לרבות השלכות נגזרות או התחייבויות שחלות באופן בלעדי על המשתמש."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:399
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:500
 msgid "<0>Note: </0>Some APIs may only support temperature values up to 1.0 instead of 2.0. If you encounter errors with higher temperature values, try reducing them to 1.0 or below."
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr "קוד גיבוי"
 msgid "Backup Codes may contain only lowercase letters or numbers, and must be exactly 10 characters."
 msgstr "קודים למטרות גיבוי יכולים להכיל רק אותיות לטיניות קטנות או מספרים והם חייבים להיות באורך של 10 תווים בדיוק."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:197
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:268
 msgid "Base URL"
 msgstr ""
 
@@ -326,15 +326,15 @@ msgstr "המשך"
 msgid "Contract"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:363
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:466
 msgid "Controls creativity for tone changes. Lower values (0-0.5) make subtle changes, higher values (1-2) make more dramatic tone shifts."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:281
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:388
 msgid "Controls creativity for writing improvements. Lower values (0-0.5) are more focused and consistent, higher values (1-2) are more creative and varied."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:322
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:427
 msgid "Controls precision for grammar fixes. Lower values (0-0.5) are more accurate and conservative, higher values may introduce more changes."
 msgstr ""
 
@@ -585,6 +585,14 @@ msgstr "אפשר לעיין בתבניות שזמינות ב־Reactive Resume ו
 msgid "Export"
 msgstr "ייצוא"
 
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:132
+msgid "Failed to fetch models."
+msgstr ""
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:310
+msgid "Fetch available models"
+msgstr ""
+
 #: apps/client/src/pages/dashboard/resumes/_dialogs/import.tsx:255
 msgid "File"
 msgstr "קובץ"
@@ -621,7 +629,7 @@ msgstr "הגווני גופן"
 msgid "For example, information regarding which companies you sent this resume to or the links to the job descriptions can be noted down here."
 msgstr "למשל, מידע לגבי לאילו חברות שלחת את קורות החיים האלה או את תיאורי התפקיד אפשר לתעד כאן."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:416
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:517
 msgid "Forget"
 msgstr "לשכוח"
 
@@ -787,7 +795,7 @@ msgstr "בסעיף הזה, אפשר לשנות את הסיסמה שלך ולהפ
 msgid "In this section, you can delete your account and all the data associated to your user, but please keep in mind that <0>this action is irreversible</0>."
 msgstr "בסעיף הזה, אפשר למחוק את החשבון שלך ואת כל הנתונים שמשויכים למשתמש שלך, אך נא לשים לב ש<0>זאת פעולה בלתי הפיכה</0>."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:244
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:351
 msgid "Include Resume Context"
 msgstr ""
 
@@ -978,7 +986,7 @@ msgstr "מרץ 2023 - כרגע"
 msgid "Margin"
 msgstr "מרווח"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:223
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:330
 msgid "Max Tokens"
 msgstr ""
 
@@ -986,7 +994,7 @@ msgstr ""
 msgid "MIT License"
 msgstr "רישיון MIT"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:210
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:281
 msgid "Model"
 msgstr ""
 
@@ -1019,6 +1027,10 @@ msgstr "רשת"
 #: apps/client/src/pages/dashboard/settings/_sections/security.tsx:96
 msgid "New Password"
 msgstr "סיסמה חדשה"
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:293
+msgid "No models found"
+msgstr ""
 
 #: apps/client/src/components/locale-combobox.tsx:45
 msgid "No results found"
@@ -1069,11 +1081,11 @@ msgstr "OpenAI לא החזיר אפשרויות לטקסט שלך."
 msgid "OpenAI Integration"
 msgstr "שילוב מול OpenAI"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:184
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:255
 msgid "OpenAI/OpenWebUI API Key"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:140
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:211
 msgid "OpenAI/OpenWebUI Integration"
 msgstr ""
 
@@ -1136,6 +1148,10 @@ msgstr "אפשר לבחור כל גופן מבין הגופנים של Google"
 #: apps/client/src/pages/dashboard/settings/_sections/account.tsx:121
 msgid "Picture"
 msgstr "תמונה"
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:102
+msgid "Please enter an API key first."
+msgstr ""
 
 #: apps/client/src/pages/auth/verify-email/page.tsx:59
 msgid "Please note that this step is completely optional."
@@ -1299,11 +1315,11 @@ msgstr "מעוגל"
 msgid "Save Changes"
 msgstr "שמירת שינויים"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:511
 msgid "Save Locally"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:511
 msgid "Saved"
 msgstr ""
 
@@ -1340,6 +1356,10 @@ msgstr "חיפוש הגוון גופן"
 msgid "Search for a language"
 msgstr "חיפוש שפה"
 
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:292
+msgid "Search models..."
+msgstr ""
+
 #: apps/client/src/pages/home/sections/features/index.tsx:56
 msgid "Secure with two-factor authentication"
 msgstr "הגנה עם אימות דו־שלבי"
@@ -1347,6 +1367,10 @@ msgstr "הגנה עם אימות דו־שלבי"
 #: apps/client/src/pages/dashboard/settings/_sections/security.tsx:65
 msgid "Security"
 msgstr "אבטחה"
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:291
+msgid "Select a model"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:63
 msgid "Select Type of Employment"
@@ -1528,15 +1552,15 @@ msgstr ""
 msgid "System"
 msgstr "מערכת"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:361
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:464
 msgid "Temperature - Change Tone"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:320
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:425
 msgid "Temperature - Fix Grammar"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:279
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:386
 msgid "Temperature - Improve Writing"
 msgstr ""
 
@@ -1702,8 +1726,8 @@ msgstr "כתובת"
 msgid "URL must start with https://"
 msgstr "כתובת חייבת להיפתח ב־https://‎"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:261
-msgid "Use Default Temperature"
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:368
+msgid "Use Custom Temperature"
 msgstr ""
 
 #: apps/client/src/components/theme-switch.tsx:30
@@ -1792,11 +1816,11 @@ msgstr "אתר אינטרנט"
 msgid "What's new in the latest version"
 msgstr "מה חדש בגרסה העדכנית"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:263
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:370
 msgid "When enabled, custom temperature values are sent with each AI request. When disabled, the API will use its default temperature settings."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:246
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:353
 msgid "When enabled, the entire resume is sent as context to improve consistency. When disabled, only the text being edited and its immediate context are sent."
 msgstr ""
 
@@ -1815,11 +1839,11 @@ msgstr "אפשר להוסיף מספר מילות מפתח על ידי הפרד�
 msgid "You can also enter your username."
 msgstr "אפשר גם למלא את שם המשתמש שלך."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:164
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:235
 msgid "You can also integrate with OpenWebUI by setting your API key. 1) Login to your local OpenWebUI instance. 2) Click on your name in the bottom left corner. 3) Click on Settings. 4) Click on Account. 5) Show and copy your API Key. It should look something like `sk-1234567890abcdef`. Fill in the Base URL to your OpenWebUI Instance, (i.e. `https://localhost:8080/api`). <0>This must connect over HTTPS and to OpenWebUI, not Ollama.</0>You can also pick and choose models (i.e. `llama3.2:latest`) and set the max tokens as per your preference."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:142
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:213
 msgid "You can make use of the OpenAI API to help you generate content, or improve your writing while composing your resume."
 msgstr "אפשר להשתמש ב־API של OpenAI כדי לסייע לך לייצא תוכן, או לשפר את הכתיבה שלך בעת כתיבת קורות החיים שלך."
 
@@ -1831,7 +1855,7 @@ msgstr "אפשר לעקוב אחר מספר הצפיות או אחר ההורד�
 msgid "You don't have permission to access this page."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:148
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:219
 msgid "You have the option to <0>obtain your own OpenAI API key</0>. This key empowers you to leverage the API as you see fit. Alternatively, if you wish to disable the AI features in Reactive Resume altogether, you can simply remove the key from your settings."
 msgstr "יש לך אפשרות <0>לקבל מפתח API משלך ל־OpenAI</0>. המפתח הזה מאפשר לך למנף את ה־API כפי שנראה לך לנכון. לחלופין, כדי להשבית את אפשרויות הבינה המלאכותית לחלוטין ב־Reactive Resume, אפשר פשוט להסיר את המפתח מההגדרות שלך."
 
@@ -1848,7 +1872,7 @@ msgstr "קיבלת הודעה!"
 msgid "Your account and all your data has been deleted successfully. Goodbye!"
 msgstr "החשבון וכל הנתונים שלך נמחקו בהצלחה. להתראות ובהצלחה!"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:425
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:526
 msgid "Your API key is securely stored in the browser's local storage and is only utilized when making requests to OpenAI via their official SDK. Rest assured that your key is not transmitted to any external server except when interacting with OpenAI's services."
 msgstr "מפתח ה־API שלך מאוחסן בדפדפן מקומית ונעשה בו שימוש רק בעת שליחת בקשות ל־OpenAI דרך ה־SDK הרשמי שלהם. אנו מתחייבים שהמפתח שלך לא מועבר לשרת חיצוני מלבד למטרות תפעול השירותים של OpenAI."
 

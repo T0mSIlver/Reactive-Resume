@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t, Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
-import { FloppyDisk, TrashSimple } from "@phosphor-icons/react";
+import { ArrowClockwise, FloppyDisk, TrashSimple } from "@phosphor-icons/react";
 import {
   Alert,
   Button,
+  Combobox,
   Form,
   FormControl,
   FormDescription,
@@ -16,11 +17,13 @@ import {
   Slider,
   Switch,
 } from "@reactive-resume/ui";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { DEFAULT_MAX_TOKENS, DEFAULT_MODEL } from "@/client/constants/llm";
 import { useOpenAiStore } from "@/client/stores/openai";
+import { openai } from "@/client/services/openai/client";
 
 const formSchema = z.object({
   apiKey: z
@@ -86,6 +89,52 @@ export const OpenAISettings = () => {
     // Normalize the input: replace locale-specific separator with dot for parsing
     const normalized = value.replace(decimalSeparator, ".");
     return parseFloat(normalized);
+  };
+
+  // State for models dropdown
+  const [models, setModels] = useState<Array<{ value: string; label: string }>>([]);
+  const [isLoadingModels, setIsLoadingModels] = useState(false);
+  const [modelError, setModelError] = useState<string | null>(null);
+
+  // Function to fetch models from OpenAI API
+  const fetchModels = async () => {
+    if (!apiKey) {
+      setModelError(t`Please enter an API key first.`);
+      return;
+    }
+
+    setIsLoadingModels(true);
+    setModelError(null);
+
+    try {
+      const client = openai();
+      const response = await client.models.list();
+      
+      // Extract model IDs and create options
+      const modelOptions = response.data
+        .map((model) => ({
+          value: model.id,
+          label: model.id,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label));
+
+      setModels(modelOptions);
+      
+      // If current model is not in the list, add it
+      const currentModel = model || form.getValues("model");
+      if (currentModel && !modelOptions.find((m) => m.value === currentModel)) {
+        setModels([
+          { value: currentModel, label: currentModel },
+          ...modelOptions,
+        ]);
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : t`Failed to fetch models.`;
+      setModelError(errorMessage);
+      console.error("Error fetching models:", error);
+    } finally {
+      setIsLoadingModels(false);
+    }
   };
 
   const isEnabled = !!apiKey;
@@ -231,8 +280,44 @@ export const OpenAISettings = () => {
               <FormItem>
                 <FormLabel>{t`Model`}</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder={DEFAULT_MODEL} {...field} />
+                  <div className="flex items-center gap-2">
+                    {models.length > 0 ? (
+                      <div className="flex-1">
+                        <Combobox
+                          {...field}
+                          value={field.value}
+                          options={models}
+                          onValueChange={field.onChange}
+                          selectPlaceholder={t`Select a model`}
+                          searchPlaceholder={t`Search models...`}
+                          emptyText={t`No models found`}
+                        />
+                      </div>
+                    ) : (
+                      <Input
+                        type="text"
+                        placeholder={DEFAULT_MODEL}
+                        {...field}
+                        className="flex-1"
+                      />
+                    )}
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={fetchModels}
+                      disabled={isLoadingModels || !apiKey}
+                      title={t`Fetch available models`}
+                    >
+                      <ArrowClockwise
+                        className={`size-4 ${isLoadingModels ? "animate-spin" : ""}`}
+                      />
+                    </Button>
+                  </div>
                 </FormControl>
+                {modelError && (
+                  <p className="text-sm text-error">{modelError}</p>
+                )}
                 <FormMessage />
               </FormItem>
             )}
