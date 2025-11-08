@@ -32,10 +32,7 @@ const customFetch: typeof fetch = async (input, init) => {
   // For custom baseURLs (like LM Studio), proxy through our backend to avoid CORS
   // Extract the path from the full URL (e.g., "/v1/chat/completions")
   const path = url.replace(baseURL, "");
-  
-  // Use the HTTP method from the SDK (it explicitly sets GET for models.list(), POST for chat.completions)
-  const method = init?.method || "GET";
-  
+  const method = init?.method;
   const body = init?.body ? JSON.parse(init.body as string) : undefined;
   const authorization = init?.headers
     ? new Headers(init.headers).get("authorization") || undefined

@@ -22,10 +22,13 @@ export class OpenAIController {
     @Headers("authorization") authorization?: string,
   ) {
     try {
-      // Use the method from the request body, defaulting to POST for backward compatibility
-      // The OpenAI SDK sets method explicitly (GET for models.list(), POST for chat.completions)
-      const method = body.method || "POST";
-      return await this.openAIService.proxyRequest(body.baseURL, body.path, method, body.body, authorization);
+      if (!body.method) {
+        throw new HttpException(
+          { error: { message: "Method is required" } },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      return await this.openAIService.proxyRequest(body.baseURL, body.path, body.method, body.body, authorization);
     } catch (error) {
       // If it's an axios error with a response, forward the status and data
       if (error && typeof error === "object" && "isAxiosError" in error) {
