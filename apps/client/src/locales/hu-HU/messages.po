@@ -38,7 +38,7 @@ msgstr ""
 msgid "<0>I'm sure the app is not perfect, but I'd like for it to be.</0><1>If you faced any issues while creating your resume, or have an idea that would help you and other users in creating your resume more easily, drop an issue on the repository or send me an email about it.</1>"
 msgstr "<0>Biztos vagyok benne, hogy az alkalmazás nem tökéletes, de szeretném, ha az lenne.</0><1>Ha bármilyen problémával szembesültél az önéletrajzod elkészítése során, vagy van egy ötleted, ami segítene neked és más felhasználóknak az önéletrajzod könnyebb elkészítésében, írj egy problémát az adattárba, vagy küldj nekem egy e-mailt róla.</1>"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:210
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:243
 msgid "<0>Note: </0>By utilizing the OpenAI API, you acknowledge and accept the <1>terms of use</1> and <2>privacy policy</2> outlined by OpenAI. Please note that Reactive Resume bears no responsibility for any improper or unauthorized utilization of the service, and any resulting repercussions or liabilities solely rest on the user."
 msgstr "<0>Megjegyzés: </0>Az OpenAI API használatával Ön tudomásul veszi és elfogadja az OpenAI által meghatározott <1>felhasználási feltételeket</1> és <2>adatvédelmi szabályzatot</2>. Felhívjuk figyelmét, hogy a Reactive Resume nem vállal felelősséget a szolgáltatás nem megfelelő vagy jogosulatlan használatáért, és az ebből eredő következmények vagy felelősségek kizárólag a felhasználót terhelik."
 
@@ -121,7 +121,7 @@ msgstr "Új szekció hozzáadása"
 msgid "Add New Page"
 msgstr "Új oldal hozzáadása"
 
-#: apps/client/src/components/ai-actions.tsx:79
+#: apps/client/src/components/ai-actions.tsx:86
 msgid "AI"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgstr "Biztonsági kód"
 msgid "Backup Codes may contain only lowercase letters or numbers, and must be exactly 10 characters."
 msgstr "A biztonsági kódok csak kisbetűket vagy számokat tartalmazhatnak, és pontosan 10 karakterből kell állniuk."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:141
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:157
 msgid "Base URL"
 msgstr "Bázis URL"
 
@@ -254,8 +254,8 @@ msgstr "A közösség által, a közösségért."
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: apps/client/src/components/ai-actions.tsx:103
-#: apps/client/src/components/ai-actions.tsx:106
+#: apps/client/src/components/ai-actions.tsx:110
+#: apps/client/src/components/ai-actions.tsx:113
 msgid "Casual"
 msgstr "Alkalmi"
 
@@ -268,7 +268,7 @@ msgstr "Vászon középre igazítása"
 msgid "Change Password"
 msgstr "Jelszó módosítása"
 
-#: apps/client/src/components/ai-actions.tsx:97
+#: apps/client/src/components/ai-actions.tsx:104
 msgid "Change Tone"
 msgstr "Hangszínváltás"
 
@@ -308,8 +308,8 @@ msgstr "Cég"
 msgid "Company Description"
 msgstr ""
 
-#: apps/client/src/components/ai-actions.tsx:115
-#: apps/client/src/components/ai-actions.tsx:118
+#: apps/client/src/components/ai-actions.tsx:122
+#: apps/client/src/components/ai-actions.tsx:125
 msgid "Confident"
 msgstr "Magabiztos"
 
@@ -581,7 +581,7 @@ msgstr "Fájltípus"
 msgid "Finally,"
 msgstr "Végül,"
 
-#: apps/client/src/components/ai-actions.tsx:90
+#: apps/client/src/components/ai-actions.tsx:97
 msgid "Fix Spelling & Grammar"
 msgstr "Helyesírás és nyelvtan javítása"
 
@@ -605,7 +605,7 @@ msgstr "Betűtípusok"
 msgid "For example, information regarding which companies you sent this resume to or the links to the job descriptions can be noted down here."
 msgstr "Itt például fel lehet jegyezni, hogy mely cégeknek küldte el az önéletrajzot, vagy hogy milyen linkek vezetnek az állásleírásokhoz."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:191
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:224
 msgid "Forget"
 msgstr "Elfelejt"
 
@@ -630,8 +630,8 @@ msgstr "Találtál egy hibát, vagy van egy új funkcióra vonatkozó ötleted?"
 msgid "Free, forever"
 msgstr "Mindig ingyenes"
 
-#: apps/client/src/components/ai-actions.tsx:121
-#: apps/client/src/components/ai-actions.tsx:124
+#: apps/client/src/components/ai-actions.tsx:128
+#: apps/client/src/components/ai-actions.tsx:131
 msgid "Friendly"
 msgstr "Barátságos"
 
@@ -755,7 +755,7 @@ msgstr "Importálás"
 msgid "Import an existing resume"
 msgstr "Meglévő önéletrajz importálása"
 
-#: apps/client/src/components/ai-actions.tsx:85
+#: apps/client/src/components/ai-actions.tsx:92
 msgid "Improve Writing"
 msgstr "Az írás javítása"
 
@@ -770,6 +770,10 @@ msgstr "Ebben a szakaszban módosíthatja jelszavát, és engedélyezheti/letilt
 #: apps/client/src/pages/dashboard/settings/_sections/danger.tsx:64
 msgid "In this section, you can delete your account and all the data associated to your user, but please keep in mind that <0>this action is irreversible</0>."
 msgstr "Ebben a szakaszban törölheti fiókját és a felhasználóhoz kapcsolódó összes adatot, de ne feledje, hogy <0>ez a művelet visszafordíthatatlan</0>."
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:204
+msgid "Include Resume Context"
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/index.tsx:135
 #: apps/client/src/pages/builder/sidebars/right/sections/information.tsx:119
@@ -958,7 +962,7 @@ msgstr "2023. március – jelen"
 msgid "Margin"
 msgstr "Margó"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:167
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:183
 msgid "Max Tokens"
 msgstr "Max zsetonok"
 
@@ -966,7 +970,7 @@ msgstr "Max zsetonok"
 msgid "MIT License"
 msgstr "MIT Licenc"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:154
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:170
 msgid "Model"
 msgstr "Modell"
 
@@ -1022,7 +1026,7 @@ msgstr "Jegyzetek"
 msgid "One-Time Password"
 msgstr "Egyszer használható jelszó"
 
-#: apps/client/src/components/ai-actions.tsx:56
+#: apps/client/src/components/ai-actions.tsx:63
 #: apps/client/src/libs/axios.ts:30
 #: apps/client/src/pages/dashboard/resumes/_dialogs/import.tsx:188
 #: apps/client/src/services/resume/print.tsx:26
@@ -1039,9 +1043,9 @@ msgstr "Megnyitás"
 msgid "Open Source"
 msgstr "Nyílt forráskódú"
 
-#: apps/client/src/services/openai/change-tone.ts:35
-#: apps/client/src/services/openai/fix-grammar.ts:33
-#: apps/client/src/services/openai/improve-writing.ts:33
+#: apps/client/src/services/openai/change-tone.ts:83
+#: apps/client/src/services/openai/fix-grammar.ts:74
+#: apps/client/src/services/openai/improve-writing.ts:72
 msgid "OpenAI did not return any choices for your text."
 msgstr "Az OpenAI nem adott vissza semmilyen választási lehetőséget a szövegedre."
 
@@ -1049,11 +1053,11 @@ msgstr "Az OpenAI nem adott vissza semmilyen választási lehetőséget a szöve
 msgid "OpenAI Integration"
 msgstr "OpenAI integráció"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:128
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:144
 msgid "OpenAI/OpenWebUI API Key"
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:84
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:100
 msgid "OpenAI/OpenWebUI Integration"
 msgstr ""
 
@@ -1158,8 +1162,8 @@ msgstr "Elsődleges szín"
 msgid "Privacy Policy"
 msgstr "Adatvédelmi irányelvek"
 
-#: apps/client/src/components/ai-actions.tsx:109
-#: apps/client/src/components/ai-actions.tsx:112
+#: apps/client/src/components/ai-actions.tsx:116
+#: apps/client/src/components/ai-actions.tsx:119
 msgid "Professional"
 msgstr "Professzionális"
 
@@ -1279,11 +1283,11 @@ msgstr "Kerekített"
 msgid "Save Changes"
 msgstr "Változások mentése"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:185
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:218
 msgid "Save Locally"
 msgstr "Helyben menteni"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:185
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:218
 msgid "Saved"
 msgstr "Megmentett"
 
@@ -1756,6 +1760,10 @@ msgstr "Honlap"
 msgid "What's new in the latest version"
 msgstr "Újdonságok a legújabb verzióban"
 
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:206
+msgid "When enabled, the entire resume is sent as context to improve consistency. When disabled, only the text being edited and its immediate context are sent."
+msgstr ""
+
 #: apps/client/src/pages/public/error.tsx:26
 msgid "You are not authorized to access this page."
 msgstr ""
@@ -1771,11 +1779,11 @@ msgstr "Több kulcsszót is hozzáadhat, ha vesszővel választja el őket, vagy
 msgid "You can also enter your username."
 msgstr "Megadhatja a felhasználónevét is."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:108
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:124
 msgid "You can also integrate with OpenWebUI by setting your API key. 1) Login to your local OpenWebUI instance. 2) Click on your name in the bottom left corner. 3) Click on Settings. 4) Click on Account. 5) Show and copy your API Key. It should look something like `sk-1234567890abcdef`. Fill in the Base URL to your OpenWebUI Instance, (i.e. `https://localhost:8080/api`). <0>This must connect over HTTPS and to OpenWebUI, not Ollama.</0>You can also pick and choose models (i.e. `llama3.2:latest`) and set the max tokens as per your preference."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:86
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:102
 msgid "You can make use of the OpenAI API to help you generate content, or improve your writing while composing your resume."
 msgstr "Az OpenAI API-t felhasználhatja a tartalomgeneráláshoz, vagy az önéletrajz megírásakor javíthatja az íráskészségét."
 
@@ -1787,7 +1795,7 @@ msgstr "A nyilvános megosztás engedélyezésével nyomon követheti, hogy hán
 msgid "You don't have permission to access this page."
 msgstr ""
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:92
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:108
 msgid "You have the option to <0>obtain your own OpenAI API key</0>. This key empowers you to leverage the API as you see fit. Alternatively, if you wish to disable the AI features in Reactive Resume altogether, you can simply remove the key from your settings."
 msgstr "Lehetősége van <0>saját OpenAI API-kulcsot szerezni</0>. Ez a kulcs lehetővé teszi, hogy az API-t saját belátása szerint használhassa. Alternatív megoldásként, ha teljesen le szeretné tiltani a Reactive Resume AI funkcióit, egyszerűen eltávolíthatja a kulcsot a beállításai közül."
 
@@ -1804,7 +1812,7 @@ msgstr "Levelet kaptál!"
 msgid "Your account and all your data has been deleted successfully. Goodbye!"
 msgstr "A fiókja és minden adata sikeresen törlődött. Viszontlátásra!"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:200
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:233
 msgid "Your API key is securely stored in the browser's local storage and is only utilized when making requests to OpenAI via their official SDK. Rest assured that your key is not transmitted to any external server except when interacting with OpenAI's services."
 msgstr "Az API-kulcs biztonságosan tárolódik a böngésző helyi tárolójában, és csak akkor kerül felhasználásra, amikor a hivatalos SDK-n keresztül kéréseket intéz az OpenAI-hoz. Biztos lehet benne, hogy a kulcsa nem kerül továbbításra semmilyen külső szerverre, kivéve, amikor az OpenAI szolgáltatásaival lép kapcsolatba."
 
@@ -1812,7 +1820,7 @@ msgstr "Az API-kulcs biztonságosan tárolódik a böngésző helyi tárolójáb
 msgid "Your email address has been verified successfully."
 msgstr "Az e-mail címét sikeresen ellenőriztük."
 
-#: apps/client/src/services/openai/client.ts:11
+#: apps/client/src/services/openai/client.ts:89
 msgid "Your OpenAI API Key has not been set yet. Please go to your account settings to enable OpenAI Integration."
 msgstr "Az OpenAI API kulcsa még nem lett beállítva. Kérjük, lépjen be a fiókbeállításokba az OpenAI integráció engedélyezéséhez."
 
