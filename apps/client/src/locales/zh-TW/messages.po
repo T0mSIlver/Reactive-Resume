@@ -38,9 +38,13 @@ msgstr ""
 msgid "<0>I'm sure the app is not perfect, but I'd like for it to be.</0><1>If you faced any issues while creating your resume, or have an idea that would help you and other users in creating your resume more easily, drop an issue on the repository or send me an email about it.</1>"
 msgstr "<0>我相信這隻應用程式還不夠完美，但希望它能夠與日俱進。</0><1>如果您在創建簡歷時遇到任何問題，或者有其他可以幫助您和其他人的想法讓使用者可以更輕鬆地創建履歷，請在 Repository 發送 issue 或將相關問題的 email 寄送給我。</1>"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:427
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:435
 msgid "<0>Note: </0>By utilizing the OpenAI API, you acknowledge and accept the <1>terms of use</1> and <2>privacy policy</2> outlined by OpenAI. Please note that Reactive Resume bears no responsibility for any improper or unauthorized utilization of the service, and any resulting repercussions or liabilities solely rest on the user."
 msgstr "<0>注意：</0>使用 OpenAI API 即表示您承認並接受<1>使用條款</1>和<2>隱私權政策</2>OpenAI 概述。請注意，Reactive Resume 對任何不當或未經授權的服務使用不承擔任何責任，由此產生的任何影響或責任僅由使用者承擔。"
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:399
+msgid "<0>Note: </0>Some APIs may only support temperature values up to 1.0 instead of 2.0. If you encounter errors with higher temperature values, try reducing them to 1.0 or below."
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/sections/information.tsx:88
 msgid "<0>The community has spent a lot of time writing the documentation for Reactive Resume, and I'm sure it will help you get started with the app.</0><1>There are also a lot of examples to help you get started, and features that you might not know about which could help you build your perfect resume.</1>"
@@ -617,7 +621,7 @@ msgstr "字型變體"
 msgid "For example, information regarding which companies you sent this resume to or the links to the job descriptions can be noted down here."
 msgstr "例如，您將這份履歷寄給哪些公司的相關資訊，或是工作說明的連結，都可以在這裡記下來。"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:408
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:416
 msgid "Forget"
 msgstr "略過"
 
@@ -1295,11 +1299,11 @@ msgstr "圓角"
 msgid "Save Changes"
 msgstr "儲存變更"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:402
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
 msgid "Save Locally"
 msgstr "儲存至本機"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:402
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
 msgid "Saved"
 msgstr "已儲存"
 
@@ -1844,7 +1848,7 @@ msgstr "你有新郵件"
 msgid "Your account and all your data has been deleted successfully. Goodbye!"
 msgstr "您的帳戶和所有資料已成功刪除。再見"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:417
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:425
 msgid "Your API key is securely stored in the browser's local storage and is only utilized when making requests to OpenAI via their official SDK. Rest assured that your key is not transmitted to any external server except when interacting with OpenAI's services."
 msgstr "您的 API 密鑰會安全地儲存在瀏覽器的本機儲存空間中，並且僅會在透過官方 SDK 向 OpenAI 提出請求時使用。請放心，除了與 OpenAI 的服務互動時，您的金鑰不會傳送到任何外部伺服器。"
 

@@ -239,7 +239,7 @@ export const OpenAISettings = () => {
             name="includeResumeContext"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 sm:col-span-2">
                 <div className="space-y-0.5">
                   <FormLabel className="text-base">{t`Include Resume Context`}</FormLabel>
                   <p className="text-sm text-muted-foreground">
@@ -394,6 +394,14 @@ export const OpenAISettings = () => {
                   </FormItem>
                 )}
               />
+              <Alert variant="info" className="sm:col-span-2">
+                <div className="prose prose-neutral max-w-full text-xs leading-relaxed text-primary dark:prose-invert">
+                  <Trans>
+                    <span className="font-medium">Note: </span>
+                    Some APIs may only support temperature values up to 1.0 instead of 2.0. If you encounter errors with higher temperature values, try reducing them to 1.0 or below.
+                  </Trans>
+                </div>
+              </Alert>
             </>
           )}
           <div className="flex items-center space-x-2 self-end sm:col-start-2">

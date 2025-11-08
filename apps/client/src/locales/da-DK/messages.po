@@ -38,9 +38,13 @@ msgstr ""
 msgid "<0>I'm sure the app is not perfect, but I'd like for it to be.</0><1>If you faced any issues while creating your resume, or have an idea that would help you and other users in creating your resume more easily, drop an issue on the repository or send me an email about it.</1>"
 msgstr "<0>Jeg er sikker på, at appen ikke er perfekt, men det er mit mål.</0> <1>Hvis du stødte på problemer, mens du oprettede dit CV, eller har en idé, der ville hjælpe dig og andre brugere med at oprette dit CV lettere, så skriv et problem på github-repo eller send mig en e-mail om det.</1>"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:427
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:435
 msgid "<0>Note: </0>By utilizing the OpenAI API, you acknowledge and accept the <1>terms of use</1> and <2>privacy policy</2> outlined by OpenAI. Please note that Reactive Resume bears no responsibility for any improper or unauthorized utilization of the service, and any resulting repercussions or liabilities solely rest on the user."
 msgstr "<0>Bemærk:</0> Ved at bruge OpenAI API'en anerkender og accepterer du <1>brugsbetingelserne</1> og <2>privatlivspolitik</2> skitseret af OpenAI. Bemærk venligst at Reactive Resume ikke bærer noget ansvar for ukorrekt eller uautoriseret brug af tjenesten, og eventuelle følgevirkninger eller ansvar påhviler udelukkende brugeren."
+
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:399
+msgid "<0>Note: </0>Some APIs may only support temperature values up to 1.0 instead of 2.0. If you encounter errors with higher temperature values, try reducing them to 1.0 or below."
+msgstr ""
 
 #: apps/client/src/pages/builder/sidebars/right/sections/information.tsx:88
 msgid "<0>The community has spent a lot of time writing the documentation for Reactive Resume, and I'm sure it will help you get started with the app.</0><1>There are also a lot of examples to help you get started, and features that you might not know about which could help you build your perfect resume.</1>"
@@ -617,7 +621,7 @@ msgstr "Skrifttype-varianter"
 msgid "For example, information regarding which companies you sent this resume to or the links to the job descriptions can be noted down here."
 msgstr "For eksempel kan oplysninger om hvilke virksomheder du har sendt dette CV til eller links til jobbeskrivelserne noteres her."
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:408
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:416
 msgid "Forget"
 msgstr "Glem"
 
@@ -1295,11 +1299,11 @@ msgstr "Afrundet"
 msgid "Save Changes"
 msgstr "Gem ændringer"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:402
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
 msgid "Save Locally"
 msgstr "Spar lokalt"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:402
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:410
 msgid "Saved"
 msgstr "Gemt"
 
@@ -1844,7 +1848,7 @@ msgstr "Du har post!"
 msgid "Your account and all your data has been deleted successfully. Goodbye!"
 msgstr "Din konto og alle dine data er blevet slettet. Vi siger farvel!"
 
-#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:417
+#: apps/client/src/pages/dashboard/settings/_sections/openai.tsx:425
 msgid "Your API key is securely stored in the browser's local storage and is only utilized when making requests to OpenAI via their official SDK. Rest assured that your key is not transmitted to any external server except when interacting with OpenAI's services."
 msgstr "Din API-nøgle gemmes sikkert i browserens lokale lager og bruges kun, når du sender anmodninger til OpenAI via deres officielle SDK. Du kan være sikker på, at din nøgle ikke overføres til nogen ekstern server, undtagen når du interagerer med OpenAI's tjenester."
 
