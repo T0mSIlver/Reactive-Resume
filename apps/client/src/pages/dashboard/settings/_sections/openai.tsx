@@ -419,7 +419,7 @@ export const OpenAISettings = () => {
             render={({ field }) => (
               <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 sm:col-span-2">
                 <div className="space-y-0.5">
-                  <FormLabel className="text-base">{t`Use Default Temperature`}</FormLabel>
+                  <FormLabel className="text-base">{t`Use Custom Temperature`}</FormLabel>
                   <FormDescription>
                     {t`When enabled, custom temperature values are sent with each AI request. When disabled, the API will use its default temperature settings.`}
                   </FormDescription>
