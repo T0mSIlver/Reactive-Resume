@@ -90,22 +90,37 @@ export const OpenAISettings = () => {
       const response = await client.models.list();
       
       // Extract model IDs and create options
+      const currentModel = model || form.getValues("model");
       const modelOptions = response.data
         .map((model) => ({
           value: model.id,
           label: model.id,
         }))
+        .filter((m) => {
+          // Remove default model if it's not in the API response
+          // Only keep it if it's actually returned by the API
+          return true;
+        })
         .sort((a, b) => a.label.localeCompare(b.label));
 
       setModels(modelOptions);
       
-      // If current model is not in the list, add it
-      const currentModel = model || form.getValues("model");
-      if (currentModel && !modelOptions.find((m) => m.value === currentModel)) {
+      // If current model is not in the fetched list, add it (but not if it's the default)
+      // This allows custom models to be preserved, but prevents selecting default if not available
+      if (currentModel && 
+          currentModel !== DEFAULT_MODEL && 
+          !modelOptions.find((m) => m.value === currentModel)) {
         setModels([
           { value: currentModel, label: currentModel },
           ...modelOptions,
         ]);
+      } else if (currentModel === DEFAULT_MODEL && !modelOptions.find((m) => m.value === DEFAULT_MODEL)) {
+        // If current model is default but not in API response, clear it or set to first available
+        if (modelOptions.length > 0) {
+          const firstModel = modelOptions[0].value;
+          form.setValue("model", firstModel);
+          setModel(firstModel);
+        }
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : t`Failed to fetch models.`;
@@ -115,8 +130,6 @@ export const OpenAISettings = () => {
       setIsLoadingModels(false);
     }
   };
-
-  const isEnabled = !!apiKey;
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -285,7 +298,7 @@ export const OpenAISettings = () => {
                       variant="outline"
                       size="icon"
                       onClick={fetchModels}
-                      disabled={isLoadingModels || !apiKey}
+                      disabled={isLoadingModels || !form.watch("apiKey")}
                       title={t`Fetch available models`}
                     >
                       <ArrowClockwise
@@ -484,16 +497,19 @@ export const OpenAISettings = () => {
           )}
           <div className="flex items-center justify-center space-x-2 sm:col-span-2">
             <Button type="submit" disabled={!form.formState.isValid}>
-              {isEnabled && <FloppyDisk className="mr-2" />}
-              {isEnabled ? t`Saved` : t`Save Locally`}
+              {!!form.watch("apiKey") && <FloppyDisk className="mr-2" />}
+              {!!form.watch("apiKey") ? t`Saved` : t`Save Locally`}
             </Button>
 
-            {isEnabled && (
-              <Button type="reset" variant="ghost" onClick={onRemove}>
-                <TrashSimple className="mr-2" />
-                {t`Forget`}
-              </Button>
-            )}
+            <Button 
+              type="reset" 
+              variant="ghost" 
+              onClick={onRemove}
+              disabled={!form.watch("apiKey")}
+            >
+              <TrashSimple className="mr-2" />
+              {t`Forget`}
+            </Button>
           </div>
         </form>
       </Form>
