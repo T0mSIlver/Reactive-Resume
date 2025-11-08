@@ -325,7 +325,7 @@ export const OpenAISettings = () => {
             name="includeResumeContext"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 sm:col-span-2">
                 <div className="space-y-0.5">
                   <FormLabel className="text-base">{t`Include Resume Context`}</FormLabel>
                   <p className="text-sm text-muted-foreground">
@@ -482,7 +482,7 @@ export const OpenAISettings = () => {
               />
             </>
           )}
-          <div className="flex items-center space-x-2 self-end sm:col-start-2">
+          <div className="flex items-center justify-center space-x-2 sm:col-span-2">
             <Button type="submit" disabled={!form.formState.isValid}>
               {isEnabled && <FloppyDisk className="mr-2" />}
               {isEnabled ? t`Saved` : t`Save Locally`}

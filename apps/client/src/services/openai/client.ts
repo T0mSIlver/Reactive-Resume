@@ -32,7 +32,17 @@ const customFetch: typeof fetch = async (input, init) => {
   // For custom baseURLs (like LM Studio), proxy through our backend to avoid CORS
   // Extract the path from the full URL (e.g., "/v1/chat/completions")
   const path = url.replace(baseURL, "");
-  const method = init?.method || "GET";
+  
+  // Determine HTTP method - OpenAI SDK's models.list() uses GET, but might not set it explicitly
+  // If path contains /models, it's definitely a GET request (OpenAI API spec)
+  // Otherwise, use the method from init or default to POST for chat completions
+  let method: string;
+  if (path.includes("/models")) {
+    method = "GET";
+  } else {
+    method = init?.method || "POST";
+  }
+  
   const body = init?.body ? JSON.parse(init.body as string) : undefined;
   const authorization = init?.headers
     ? new Headers(init.headers).get("authorization") || undefined
@@ -40,12 +50,14 @@ const customFetch: typeof fetch = async (input, init) => {
   
   try {
     // Use axios to call our proxy endpoint (same-origin, no CORS issues)
-    const response = await axios.post("/openai/proxy", {
+    const proxyBody = {
       baseURL,
       path,
       method,
       body,
-    }, {
+    };
+    
+    const response = await axios.post("/openai/proxy", proxyBody, {
       headers: authorization ? { authorization } : undefined,
     });
     
