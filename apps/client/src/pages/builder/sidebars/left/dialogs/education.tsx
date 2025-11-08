@@ -142,11 +142,12 @@ export const EducationDialog = () => {
                   content={field.value}
                   footer={(editor) => (
                     <AiActions
-                      value={editor.getText()}
+                      value={editor.getHTML()}
                       onChange={(value) => {
                         editor.commands.setContent(value, true);
                         field.onChange(value);
                       }}
+                      itemContext={() => form.getValues()}
                     />
                   )}
                   onChange={(value) => {

@@ -33,7 +33,7 @@ export const SummarySection = () => {
           content={section.content}
           footer={(editor) => (
             <AiActions
-              value={editor.getText()}
+              value={editor.getHTML()}
               onChange={(value) => {
                 editor.commands.setContent(value, true);
                 setValue("sections.summary.content", value);
