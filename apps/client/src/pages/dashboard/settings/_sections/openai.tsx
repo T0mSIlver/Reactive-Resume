@@ -16,7 +16,7 @@ import {
   Slider,
   Switch,
 } from "@reactive-resume/ui";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -174,6 +174,41 @@ export const OpenAISettings = () => {
     setTemperatureChangeTone(temperatureChangeTone);
   };
 
+  // Default values for comparison
+  const defaultValues: FormValues = useMemo(
+    () => ({
+      apiKey: "",
+      baseURL: "",
+      model: DEFAULT_MODEL,
+      maxTokens: DEFAULT_MAX_TOKENS,
+      includeResumeContext: true,
+      useDefaultTemperature: true,
+      temperatureImprove: 0.7,
+      temperatureFix: 0.3,
+      temperatureChangeTone: 0.7,
+    }),
+    [],
+  );
+
+  // Watch all form values
+  const watchedValues = form.watch();
+
+  // Check if any value differs from default
+  const hasChanges = useMemo(() => {
+    const current = watchedValues;
+    return (
+      current.apiKey !== defaultValues.apiKey ||
+      current.baseURL !== defaultValues.baseURL ||
+      current.model !== defaultValues.model ||
+      current.maxTokens !== defaultValues.maxTokens ||
+      current.includeResumeContext !== defaultValues.includeResumeContext ||
+      current.useDefaultTemperature !== defaultValues.useDefaultTemperature ||
+      current.temperatureImprove !== defaultValues.temperatureImprove ||
+      current.temperatureFix !== defaultValues.temperatureFix ||
+      current.temperatureChangeTone !== defaultValues.temperatureChangeTone
+    );
+  }, [watchedValues, defaultValues]);
+
   const onRemove = () => {
     setApiKey(null);
     setBaseURL(null);
@@ -184,17 +219,7 @@ export const OpenAISettings = () => {
     setTemperatureImprove(0.7);
     setTemperatureFix(0.3);
     setTemperatureChangeTone(0.7);
-    form.reset({
-      apiKey: "",
-      baseURL: "",
-      model: DEFAULT_MODEL,
-      maxTokens: DEFAULT_MAX_TOKENS,
-      includeResumeContext: true,
-      useDefaultTemperature: true,
-      temperatureImprove: 0.7,
-      temperatureFix: 0.3,
-      temperatureChangeTone: 0.7,
-    });
+    form.reset(defaultValues);
   };
 
   return (
@@ -505,7 +530,7 @@ export const OpenAISettings = () => {
               type="reset" 
               variant="ghost" 
               onClick={onRemove}
-              disabled={!form.watch("apiKey")}
+              disabled={!hasChanges}
             >
               <TrashSimple className="mr-2" />
               {t`Forget`}
