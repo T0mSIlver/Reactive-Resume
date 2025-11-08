@@ -14,6 +14,14 @@ type OpenAIStore = {
   setMaxTokens: (maxTokens: number | null) => void;
   includeResumeContext: boolean;
   setIncludeResumeContext: (includeResumeContext: boolean) => void;
+  useDefaultTemperature: boolean;
+  setUseDefaultTemperature: (useDefaultTemperature: boolean) => void;
+  temperatureImprove: number;
+  setTemperatureImprove: (temperature: number) => void;
+  temperatureFix: number;
+  setTemperatureFix: (temperature: number) => void;
+  temperatureChangeTone: number;
+  setTemperatureChangeTone: (temperature: number) => void;
 };
 
 export const useOpenAiStore = create<OpenAIStore>()(
@@ -38,6 +46,22 @@ export const useOpenAiStore = create<OpenAIStore>()(
       includeResumeContext: true,
       setIncludeResumeContext: (includeResumeContext: boolean) => {
         set({ includeResumeContext });
+      },
+      useDefaultTemperature: true,
+      setUseDefaultTemperature: (useDefaultTemperature: boolean) => {
+        set({ useDefaultTemperature });
+      },
+      temperatureImprove: 0.7,
+      setTemperatureImprove: (temperature: number) => {
+        set({ temperatureImprove: temperature });
+      },
+      temperatureFix: 0.3,
+      setTemperatureFix: (temperature: number) => {
+        set({ temperatureFix: temperature });
+      },
+      temperatureChangeTone: 0.7,
+      setTemperatureChangeTone: (temperature: number) => {
+        set({ temperatureChangeTone: temperature });
       },
     }),
     { name: "openai" },

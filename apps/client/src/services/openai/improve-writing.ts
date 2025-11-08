@@ -48,7 +48,7 @@ export const improveWriting = async (
   resumeData?: ResumeData,
   itemContext?: Record<string, unknown>,
 ) => {
-  const { model, maxTokens, includeResumeContext } = useOpenAiStore.getState();
+  const { model, maxTokens, includeResumeContext, useDefaultTemperature, temperatureImprove } = useOpenAiStore.getState();
 
   const userMessages: string[] = [];
   
@@ -69,7 +69,13 @@ export const improveWriting = async (
   const inputText = convertHtmlToMarkdown(text);
   userMessages.push(`Please improve the writing of the following paragraph. Return only the improved text, no additional commentary:\n\n${inputText}`);
 
-  const result = await openai().chat.completions.create({
+  const requestParams: {
+    messages: Array<{ role: "system" | "user"; content: string }>;
+    model: string;
+    max_tokens: number;
+    n: number;
+    temperature?: number;
+  } = {
     messages: [
       { role: "system", content: SYSTEM_PROMPT },
       { role: "user", content: userMessages.join("") },
@@ -77,7 +83,14 @@ export const improveWriting = async (
     model: model ?? DEFAULT_MODEL,
     max_tokens: maxTokens ?? DEFAULT_MAX_TOKENS,
     n: 1,
-  });
+  };
+
+  // Only include temperature if useDefaultTemperature is enabled
+  if (useDefaultTemperature) {
+    requestParams.temperature = temperatureImprove;
+  }
+
+  const result = await openai().chat.completions.create(requestParams);
 
   if (result.choices.length === 0) {
     throw new Error(t`OpenAI did not return any choices for your text.`);
