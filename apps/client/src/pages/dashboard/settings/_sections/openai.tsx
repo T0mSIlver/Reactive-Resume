@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t, Trans } from "@lingui/macro";
-import { ArrowClockwise, FloppyDisk, TrashSimple } from "@phosphor-icons/react";
+import { ArrowClockwise, TrashSimple } from "@phosphor-icons/react";
 import {
   Alert,
   Button,
@@ -16,7 +16,7 @@ import {
   Slider,
   Switch,
 } from "@reactive-resume/ui";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -146,7 +146,7 @@ export const OpenAISettings = () => {
     },
   });
 
-  const onSubmit = ({
+  const saveSettings = useCallback(({
     apiKey,
     baseURL,
     model,
@@ -172,7 +172,44 @@ export const OpenAISettings = () => {
     setTemperatureImprove(temperatureImprove);
     setTemperatureFix(temperatureFix);
     setTemperatureChangeTone(temperatureChangeTone);
-  };
+  }, [
+    setApiKey,
+    setBaseURL,
+    setModel,
+    setMaxTokens,
+    setIncludeResumeContext,
+    setUseDefaultTemperature,
+    setTemperatureImprove,
+    setTemperatureFix,
+    setTemperatureChangeTone,
+  ]);
+
+  // Auto-save when form values change
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  useEffect(() => {
+    const subscription = form.watch((value) => {
+      // Clear any pending save
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      
+      // Only save if the form is valid
+      if (form.formState.isValid) {
+        // Debounce the save to avoid too many updates
+        saveTimeoutRef.current = setTimeout(() => {
+          saveSettings(value as FormValues);
+        }, 300);
+      }
+    });
+    
+    return () => {
+      subscription.unsubscribe();
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [form, saveSettings]);
 
   // Default values for comparison
   const defaultValues: FormValues = useMemo(
@@ -263,7 +300,7 @@ export const OpenAISettings = () => {
       </div>
 
       <Form {...form}>
-        <form className="grid gap-6 sm:grid-cols-2" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="grid gap-6 sm:grid-cols-2">
           <FormField
             name="apiKey"
             control={form.control}
@@ -521,19 +558,14 @@ export const OpenAISettings = () => {
             </>
           )}
           <div className="flex items-center justify-center space-x-2 sm:col-span-2">
-            <Button type="submit" disabled={!form.formState.isValid}>
-              {!!form.watch("apiKey") && <FloppyDisk className="mr-2" />}
-              {!!form.watch("apiKey") ? t`Saved` : t`Save Locally`}
-            </Button>
-
             <Button 
-              type="reset" 
+              type="button" 
               variant="ghost" 
               onClick={onRemove}
               disabled={!hasChanges}
             >
               <TrashSimple className="mr-2" />
-              {t`Forget`}
+              {t`Reset`}
             </Button>
           </div>
         </form>
