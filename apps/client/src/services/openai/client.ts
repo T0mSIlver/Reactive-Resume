@@ -84,6 +84,8 @@ const customFetch: typeof fetch = async (input, init) => {
       body,
     };
     
+    console.log("Sending to proxy:", proxyBody);
+    
     const response = await axios.post("/openai/proxy", proxyBody, {
       headers: authorization ? { authorization } : undefined,
     });

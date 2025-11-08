@@ -22,7 +22,10 @@ export class OpenAIController {
     @Headers("authorization") authorization?: string,
   ) {
     try {
+      // Log what we received
+      console.log("Proxy received:", { method: body.method, path: body.path, hasBody: !!body.body });
       const method = body.method || "POST";
+      console.log("Using method:", method);
       return await this.openAIService.proxyRequest(body.baseURL, body.path, method, body.body, authorization);
     } catch (error) {
       // If it's an axios error with a response, forward the status and data
