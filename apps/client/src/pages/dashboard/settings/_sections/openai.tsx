@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t, Trans } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import { FloppyDisk, TrashSimple } from "@phosphor-icons/react";
 import {
   Alert,
@@ -45,6 +46,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export const OpenAISettings = () => {
+  const { i18n } = useLingui();
   const {
     apiKey,
     setApiKey,
@@ -65,6 +67,26 @@ export const OpenAISettings = () => {
     temperatureChangeTone,
     setTemperatureChangeTone,
   } = useOpenAiStore();
+
+  // Helper to format number according to locale
+  const formatNumber = (value: number): string => {
+    return new Intl.NumberFormat(i18n.locale, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    }).format(value);
+  };
+
+  // Helper to parse number from locale-formatted string
+  const parseNumber = (value: string): number => {
+    // Get the decimal separator for the current locale
+    const formatter = new Intl.NumberFormat(i18n.locale);
+    const parts = formatter.formatToParts(1.1);
+    const decimalSeparator = parts.find((part) => part.type === "decimal")?.value || ".";
+
+    // Normalize the input: replace locale-specific separator with dot for parsing
+    const normalized = value.replace(decimalSeparator, ".");
+    return parseFloat(normalized);
+  };
 
   const isEnabled = !!apiKey;
 
@@ -239,7 +261,7 @@ export const OpenAISettings = () => {
             name="includeResumeContext"
             control={form.control}
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 sm:col-span-2">
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                 <div className="space-y-0.5">
                   <FormLabel className="text-base">{t`Include Resume Context`}</FormLabel>
                   <p className="text-sm text-muted-foreground">
@@ -293,13 +315,11 @@ export const OpenAISettings = () => {
                           className="flex-1"
                         />
                         <Input
-                          type="number"
-                          min={0}
-                          max={2}
-                          step={0.1}
-                          value={field.value}
+                          type="text"
+                          inputMode="decimal"
+                          value={formatNumber(field.value)}
                           onChange={(e) => {
-                            const val = parseFloat(e.target.value);
+                            const val = parseNumber(e.target.value);
                             if (!isNaN(val) && val >= 0 && val <= 2) {
                               field.onChange(val);
                             }
@@ -334,13 +354,11 @@ export const OpenAISettings = () => {
                           className="flex-1"
                         />
                         <Input
-                          type="number"
-                          min={0}
-                          max={2}
-                          step={0.1}
-                          value={field.value}
+                          type="text"
+                          inputMode="decimal"
+                          value={formatNumber(field.value)}
                           onChange={(e) => {
-                            const val = parseFloat(e.target.value);
+                            const val = parseNumber(e.target.value);
                             if (!isNaN(val) && val >= 0 && val <= 2) {
                               field.onChange(val);
                             }
@@ -375,13 +393,11 @@ export const OpenAISettings = () => {
                           className="flex-1"
                         />
                         <Input
-                          type="number"
-                          min={0}
-                          max={2}
-                          step={0.1}
-                          value={field.value}
+                          type="text"
+                          inputMode="decimal"
+                          value={formatNumber(field.value)}
                           onChange={(e) => {
-                            const val = parseFloat(e.target.value);
+                            const val = parseNumber(e.target.value);
                             if (!isNaN(val) && val >= 0 && val <= 2) {
                               field.onChange(val);
                             }
@@ -394,14 +410,6 @@ export const OpenAISettings = () => {
                   </FormItem>
                 )}
               />
-              <Alert variant="info" className="sm:col-span-2">
-                <div className="prose prose-neutral max-w-full text-xs leading-relaxed text-primary dark:prose-invert">
-                  <Trans>
-                    <span className="font-medium">Note: </span>
-                    Some APIs may only support temperature values up to 1.0 instead of 2.0. If you encounter errors with higher temperature values, try reducing them to 1.0 or below.
-                  </Trans>
-                </div>
-              </Alert>
             </>
           )}
           <div className="flex items-center space-x-2 self-end sm:col-start-2">
