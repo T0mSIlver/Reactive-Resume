@@ -1,52 +1,25 @@
 import type { ResumeData } from "@reactive-resume/schema";
+import MarkdownIt from "markdown-it";
 import TurndownService from "turndown";
 
+// Initialize Markdown-it for Markdown to HTML conversion
+const md = new MarkdownIt({
+  breaks: true, // Convert single line breaks to <br>
+  html: false, // Don't parse HTML tags (security)
+  linkify: false, // Don't auto-convert URLs to links
+});
+
 /**
- * Converts plain text with newlines and bullet points to HTML format for TipTap editor.
- * Handles:
- * - Bullet points (lines starting with "- " or "• ") -> <ul><li> structure
- * - Regular paragraphs -> <p> tags
- * - Empty lines -> ignored or empty <p> tags
+ * Converts Markdown text (returned by LLM) to HTML format for TipTap editor.
+ * Uses the `markdown-it` library to parse Markdown and convert it to HTML.
+ * This handles bullet points, paragraphs, and other Markdown formatting.
  */
 export const convertTextToHtml = (text: string): string => {
   if (!text) return "";
 
-  const lines = text.split("\n");
-  const htmlParts: string[] = [];
-  let currentList: string[] = [];
-
-  const flushList = () => {
-    if (currentList.length > 0) {
-      const listItems = currentList.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-      htmlParts.push(`<ul>${listItems}</ul>`);
-      currentList = [];
-    }
-  };
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    
-    // Check if line is a bullet point
-    const bulletMatch = trimmed.match(/^[-•]\s+(.+)$/);
-    
-    if (bulletMatch) {
-      // It's a bullet point
-      currentList.push(bulletMatch[1]);
-    } else {
-      // Flush any pending list items
-      flushList();
-      
-      // Add as paragraph (or skip if empty)
-      if (trimmed) {
-        htmlParts.push(`<p>${escapeHtml(trimmed)}</p>`);
-      }
-    }
-  }
-
-  // Flush any remaining list items
-  flushList();
-
-  return htmlParts.join("");
+  // Use markdown-it to convert Markdown to HTML
+  // The LLM returns Markdown format (with "- " for bullets, etc.)
+  return md.render(text.trim());
 };
 
 // Initialize Turndown service for HTML to Markdown conversion
@@ -75,19 +48,6 @@ export const convertHtmlToMarkdown = (html: string): string => {
     .trim();
 };
 
-/**
- * Escapes HTML special characters to prevent XSS attacks.
- */
-const escapeHtml = (text: string): string => {
-  const map: Record<string, string> = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;",
-  };
-  return text.replace(/[&<>"']/g, (char) => map[char]);
-};
 
 /**
  * Formats a single item context (e.g., current form values) as plain text for LLM context.

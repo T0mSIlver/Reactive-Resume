@@ -26,13 +26,15 @@ CRITICAL INSTRUCTIONS:
 - Preserve any technical terms, proper nouns, and industry-specific language
 - Keep the improved text concise and impactful
 
-BULLET POINT FORMATTING:
-- For work experience and education descriptions, format the output as bullet points
+OUTPUT FORMAT:
+- Return the response in Markdown format
+- For work experience and education descriptions, format the output as bullet points using Markdown list syntax ("- " or "* ")
 - Use between 3 and 5 bullet points
 - For recent experiences/education (based on dates in the resume context), use more bullet points (4-5)
 - For older experiences/education, use fewer bullet points (3-4)
 - Each bullet point should be a concise, action-oriented statement with quantifiable achievements when possible
-- Use standard bullet point format (each bullet on a new line starting with "- " or "• ")`;
+- Use standard Markdown bullet point format (each bullet on a new line starting with "- ")
+- Separate paragraphs with blank lines`;
 
 export const improveWriting = async (
   text: string,
