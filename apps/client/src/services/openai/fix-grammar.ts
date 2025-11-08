@@ -26,6 +26,12 @@ CRITICAL INSTRUCTIONS:
 - Maintain the same language as the input text
 - Preserve formatting, capitalization, and style
 
+ABSOLUTE RULE - NUMBERS AND METRICS:
+- NEVER invent, add, or fabricate numbers, percentages, dollar amounts, quantities, or metrics
+- ONLY include numbers/metrics if they are explicitly present in the original text or context
+- If numbers exist in the original text, preserve them exactly as written
+- If no numbers exist in the original, do not add any - only fix grammar and spelling errors
+
 BULLET POINT FORMATTING:
 - For work experience and education descriptions, format the output as bullet points
 - Use between 3 and 5 bullet points
@@ -33,7 +39,7 @@ BULLET POINT FORMATTING:
 - For older experiences/education, use fewer bullet points (3-4)
 - If the input is already in bullet point format, preserve that format while fixing errors
 - If the input is paragraph text for experience/education descriptions, convert it to bullet points
-- Each bullet point should be a concise, action-oriented statement with quantifiable achievements when possible
+- Each bullet point should be a concise, action-oriented statement
 - Use standard bullet point format (each bullet on a new line starting with "- " or "• ")`;
 
 export const fixGrammar = async (
