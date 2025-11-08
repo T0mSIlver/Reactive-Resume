@@ -15,12 +15,13 @@ export class OpenAIService {
   async proxyRequest(
     baseURL: string,
     path: string,
+    method: string,
     body: unknown,
     authorization?: string,
   ): Promise<unknown> {
     const url = `${baseURL}${path}`;
 
-    this.logger.debug(`Proxying request to ${url}`);
+    this.logger.debug(`Proxying ${method} request to ${url}`);
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -30,9 +31,16 @@ export class OpenAIService {
       headers.Authorization = authorization;
     }
 
-    const response = await firstValueFrom(
-      this.httpService.post(url, body, { headers }),
-    );
+    let response;
+    if (method === "GET") {
+      response = await firstValueFrom(
+        this.httpService.get(url, { headers }),
+      );
+    } else {
+      response = await firstValueFrom(
+        this.httpService.post(url, body, { headers }),
+      );
+    }
 
     return response.data;
   }

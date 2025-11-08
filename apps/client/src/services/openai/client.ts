@@ -32,6 +32,7 @@ const customFetch: typeof fetch = async (input, init) => {
   // For custom baseURLs (like LM Studio), proxy through our backend to avoid CORS
   // Extract the path from the full URL (e.g., "/v1/chat/completions")
   const path = url.replace(baseURL, "");
+  const method = init?.method || "GET";
   const body = init?.body ? JSON.parse(init.body as string) : undefined;
   const authorization = init?.headers
     ? new Headers(init.headers).get("authorization") || undefined
@@ -42,6 +43,7 @@ const customFetch: typeof fetch = async (input, init) => {
     const response = await axios.post("/openai/proxy", {
       baseURL,
       path,
+      method,
       body,
     }, {
       headers: authorization ? { authorization } : undefined,

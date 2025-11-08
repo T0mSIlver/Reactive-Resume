@@ -18,11 +18,12 @@ export class OpenAIController {
   @Post("proxy")
   @UseGuards(TwoFactorGuard)
   async proxy(
-    @Body() body: { baseURL: string; path: string; body: unknown },
+    @Body() body: { baseURL: string; path: string; method?: string; body?: unknown },
     @Headers("authorization") authorization?: string,
   ) {
     try {
-      return await this.openAIService.proxyRequest(body.baseURL, body.path, body.body, authorization);
+      const method = body.method || "POST";
+      return await this.openAIService.proxyRequest(body.baseURL, body.path, method, body.body, authorization);
     } catch (error) {
       // If it's an axios error with a response, forward the status and data
       if (error && typeof error === "object" && "isAxiosError" in error) {
