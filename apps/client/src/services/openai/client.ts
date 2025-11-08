@@ -33,42 +33,8 @@ const customFetch: typeof fetch = async (input, init) => {
   // Extract the path from the full URL (e.g., "/v1/chat/completions")
   const path = url.replace(baseURL, "");
   
-  // Debug: Log what the SDK is passing
-  let headersObj: Record<string, string> | undefined;
-  if (init?.headers) {
-    if (init.headers instanceof Headers) {
-      headersObj = {};
-      init.headers.forEach((value, key) => {
-        headersObj![key] = value;
-      });
-    } else if (typeof init.headers === "object") {
-      headersObj = init.headers as Record<string, string>;
-    }
-  }
-  console.log("Custom fetch called:", {
-    url,
-    path,
-    method: init?.method,
-    hasBody: !!init?.body,
-    headers: headersObj,
-  });
-  
-  // Determine HTTP method
-  // The fetch API defaults to GET when no method is specified
-  // OpenAI SDK should explicitly set method, but if not, we need to infer it
-  // - GET: models.list(), no body
-  // - POST: chat.completions.create(), has body
-  let method: string;
-  if (init?.method) {
-    // SDK explicitly set the method - use it
-    method = init.method;
-  } else if (init?.body) {
-    // Has body but no method - must be POST (chat completions)
-    method = "POST";
-  } else {
-    // No method and no body - must be GET (models list)
-    method = "GET";
-  }
+  // Use the HTTP method from the SDK (it explicitly sets GET for models.list(), POST for chat.completions)
+  const method = init?.method || "GET";
   
   const body = init?.body ? JSON.parse(init.body as string) : undefined;
   const authorization = init?.headers
@@ -83,8 +49,6 @@ const customFetch: typeof fetch = async (input, init) => {
       method,
       body,
     };
-    
-    console.log("Sending to proxy:", proxyBody);
     
     const response = await axios.post("/openai/proxy", proxyBody, {
       headers: authorization ? { authorization } : undefined,
