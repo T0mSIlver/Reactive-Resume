@@ -18,6 +18,7 @@ import {
 import { cn } from "@reactive-resume/utils";
 import { useState } from "react";
 
+import { useResumeStore } from "../stores/resume";
 import { toast } from "../hooks/use-toast";
 import { changeTone } from "../services/openai/change-tone";
 import { fixGrammar } from "../services/openai/fix-grammar";
@@ -31,11 +32,13 @@ type Props = {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  itemContext?: Record<string, unknown> | (() => Record<string, unknown>);
 };
 
-export const AiActions = ({ value, onChange, className }: Props) => {
+export const AiActions = ({ value, onChange, className, itemContext }: Props) => {
   const [loading, setLoading] = useState<Action | false>(false);
   const aiEnabled = useOpenAiStore((state) => !!state.apiKey);
+  const resumeData = useResumeStore((state) => state.resume.data);
 
   if (!aiEnabled) return null;
 
@@ -43,11 +46,15 @@ export const AiActions = ({ value, onChange, className }: Props) => {
     try {
       setLoading(action);
 
+      // Get current item context (support both direct value and function)
+      const currentItemContext =
+        typeof itemContext === "function" ? itemContext() : itemContext;
+
       let result = value;
 
-      if (action === "improve") result = await improveWriting(value);
-      if (action === "fix") result = await fixGrammar(value);
-      if (action === "tone" && mood) result = await changeTone(value, mood);
+      if (action === "improve") result = await improveWriting(value, resumeData, currentItemContext);
+      if (action === "fix") result = await fixGrammar(value, resumeData, currentItemContext);
+      if (action === "tone" && mood) result = await changeTone(value, mood, resumeData, currentItemContext);
 
       onChange(result);
     } catch (error) {
