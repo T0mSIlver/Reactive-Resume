@@ -146,7 +146,8 @@ export const formatResumeAsText = (resumeData: ResumeData): string => {
     parts.push(`\n## Languages`);
     for (const item of resumeData.sections.languages.items) {
       if (!item.visible) continue;
-      parts.push(`- ${item.name}${item.fluency ? ` (${item.fluency})` : ""}`);
+      const description = item.description ? ` (${item.description})` : "";
+      parts.push(`- ${item.name}${description}`);
     }
   }
 
