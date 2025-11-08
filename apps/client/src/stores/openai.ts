@@ -12,6 +12,8 @@ type OpenAIStore = {
   setModel: (model: string | null) => void;
   maxTokens: number | null;
   setMaxTokens: (maxTokens: number | null) => void;
+  includeResumeContext: boolean;
+  setIncludeResumeContext: (includeResumeContext: boolean) => void;
 };
 
 export const useOpenAiStore = create<OpenAIStore>()(
@@ -32,6 +34,10 @@ export const useOpenAiStore = create<OpenAIStore>()(
       maxTokens: DEFAULT_MAX_TOKENS,
       setMaxTokens: (maxTokens: number | null) => {
         set({ maxTokens });
+      },
+      includeResumeContext: true,
+      setIncludeResumeContext: (includeResumeContext: boolean) => {
+        set({ includeResumeContext });
       },
     }),
     { name: "openai" },

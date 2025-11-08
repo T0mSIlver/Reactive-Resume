@@ -11,6 +11,7 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  Switch,
 } from "@reactive-resume/ui";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -32,13 +33,24 @@ const formSchema = z.object({
     .default(""),
   model: z.string().default(DEFAULT_MODEL),
   maxTokens: z.number().default(DEFAULT_MAX_TOKENS),
+  includeResumeContext: z.boolean().default(true),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export const OpenAISettings = () => {
-  const { apiKey, setApiKey, baseURL, setBaseURL, model, setModel, maxTokens, setMaxTokens } =
-    useOpenAiStore();
+  const {
+    apiKey,
+    setApiKey,
+    baseURL,
+    setBaseURL,
+    model,
+    setModel,
+    maxTokens,
+    setMaxTokens,
+    includeResumeContext,
+    setIncludeResumeContext,
+  } = useOpenAiStore();
 
   const isEnabled = !!apiKey;
 
@@ -49,10 +61,11 @@ export const OpenAISettings = () => {
       baseURL: baseURL ?? "",
       model: model ?? DEFAULT_MODEL,
       maxTokens: maxTokens ?? DEFAULT_MAX_TOKENS,
+      includeResumeContext: includeResumeContext ?? true,
     },
   });
 
-  const onSubmit = ({ apiKey, baseURL, model, maxTokens }: FormValues) => {
+  const onSubmit = ({ apiKey, baseURL, model, maxTokens, includeResumeContext }: FormValues) => {
     setApiKey(apiKey);
     if (baseURL) {
       setBaseURL(baseURL);
@@ -63,6 +76,7 @@ export const OpenAISettings = () => {
     if (maxTokens) {
       setMaxTokens(maxTokens);
     }
+    setIncludeResumeContext(includeResumeContext);
   };
 
   const onRemove = () => {
@@ -70,11 +84,13 @@ export const OpenAISettings = () => {
     setBaseURL(null);
     setModel(DEFAULT_MODEL);
     setMaxTokens(DEFAULT_MAX_TOKENS);
+    setIncludeResumeContext(true);
     form.reset({
       apiKey: "",
       baseURL: "",
       model: DEFAULT_MODEL,
       maxTokens: DEFAULT_MAX_TOKENS,
+      includeResumeContext: true,
     });
   };
 
@@ -176,6 +192,23 @@ export const OpenAISettings = () => {
                   />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            name="includeResumeContext"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <FormLabel className="text-base">{t`Include Resume Context`}</FormLabel>
+                  <p className="text-sm text-muted-foreground">
+                    {t`When enabled, the entire resume is sent as context to improve consistency. When disabled, only the text being edited and its immediate context are sent.`}
+                  </p>
+                </div>
+                <FormControl>
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
               </FormItem>
             )}
           />
